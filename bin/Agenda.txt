@@ -1,0 +1,191 @@
+Command History::::
+CREATE DATABASE BankingSystemDatabase;
+:::::::::::::::::::::::
+
+Transaction Table
+
+CREATE TABLE Transactions (
+    transactionID INT PRIMARY KEY AUTO_INCREMENT,
+    amount DECIMAL(15,2),
+    senderID INT,
+    recieverID INT,
+    FOREIGN KEY (senderID) REFERENCES Users(userID),
+    FOREIGN KEY (recieverID) REFERENCES Users(userID)
+);
+-Has forqeign key referencing the Sending User 
+-Foreign Key Receiving User
+-Primary Key for the Transaction ID
+-Amount fo Money Sent 
+-
+
+* The User should have seperate  ArrayLists for Transactions that were recieved and transactions that were sent 
+* The User is created and all the data from the tables is loaded in through the objects. Each record corresponds to an object. 
+
+When you need to add a, for example, Transaction, first input that transaction into the database. Then, take the record using the Primary Key 
+and create an object out of it
+
+*Make a transaction
+*View Transaction History
+
+
+
+
+User Table
+
+CREATE TABLE Users (
+    userID INT PRIMARY KEY AUTO_INCREMENT,
+    nameofUser VARCHAR(255),
+    pin VARCHAR(4),
+    username VARCHAR(255),
+    userPassword VARCHAR(255)
+);
+
+userID
+name 
+pin 
+username 
+pin 
+
+Bills Table
+CREATE TABLE Bills (
+    billID INT PRIMARY KEY AUTO_INCREMENT,
+    billAmount DECIMAL(15,2),
+    biller VARCHAR(255),
+    billeeID INT,
+    paid boolean,
+    FOREIGN KEY (billeeID) REFERENCES Users(userID)
+);
+
+ChequeingAccounts
+CREATE TABLE ChequeingAccounts (
+    accountID INT PRIMARY KEY AUTO_INCREMENT,
+    balance DECIMAL(15,2),
+    userID INT UNIQUE,
+    UNIQUE (userID),
+    FOREIGN KEY (userID) REFERENCES Users(userID) 
+);
+
+SavingsAccounts
+CREATE TABLE SavingsAccounts (
+    accountID INT PRIMARY KEY AUTO_INCREMENT,
+    balance DECIMAL(15,2),
+    userID INT UNIQUE,
+    interest DECIMAL(5,3),
+    UNIQUE (userID),
+    FOREIGN KEY (userID) REFERENCES Users(userID) 
+);
+
+
+Inserting demo values:
+INSERT INTO users (nameofUser, pin , username, userPassword)
+VALUES ('Taha Iqbal', '1111', 't4iqbal', '123'); 
+
+DELETE FROM users WHERE userID=2;
+
+INSERT INTO chequeingaccounts (balance, userID)
+VALUES (20100.10, 1 );
+
+
+INSERT INTO savingsaccounts (balance, userID)
+VALUES (42123.12, 1 );
+
+
+Insurance/Policies
+CREATE TABLE Policies (
+    policyID INT PRIMARY KEY AUTO_INCREMENT,
+    description VARCHAR(1000));
+	
+Loans
+CREATE TABLE LOANS (
+loanID INT PRIMARY KEY AUTO_INCREMENT,
+principle DECIMAL(15,2),
+userID INT UNIQUE,
+UNIQUE (userID),
+FOREIGN KEY (userID) REFERENCES Users(userID));
+
+CREATE TABLE loans (
+loanID INT PRIMARY KEY AUTO_INCREMENT,
+principle DECIMAL(15,2),
+userID INT UNIQUE,
+UNIQUE (userID),
+FOREIGN KEY (userID) REFERENCES Users(userID));
+
+CREATE TABLE Requests (
+requestID INT PRIMARY KEY AUTO_INCREMENT,
+question VARCHAR(1000),
+answer VARCHAR(1000),
+userID int,
+FOREIGN KEY (userID) REFERENCES Users(userID));
+
+ALTER TABLE users ADD insuranceID int;
+
+ALTER TABLE  users
+ADD FOREIGN KEY (insuranceID) REFERENCES users(userID);
+
+INSERT INTO policies (description) 
+VALUES ("Standard CDIC Insurance");
+
+INSERT INTO users (nameofUser, pin , username, userPassword, insuranceID)
+VALUES ('gurveen', '2222', 'gurva', '123', 1); 
+
+INSERT INTO users (nameofUser, pin , username, userPassword, insuranceID)
+VALUES ('kellsi', '3333', 'kel', '345');
+
+INSERT INTO users (nameofUser, pin , username, userPassword)
+VALUES ('japneet', '4444', 'jap', '679');
+
+
+---------------------
+INSERT INTO chequeingaccounts (balance, userID)
+VALUES (2020.00, 5);
+
+INSERT INTO chequeingaccounts (balance, userID)
+VALUES (3111.21, 13);
+
+INSERT INTO chequeingaccounts (balance, userID)
+VALUES (5000.0, 14);
+
+INSERT INTO savingsaccounts (balance, userID, interest)
+VALUES (134256.11, 5, 0.03);
+
+INSERT INTO savingsaccounts (balance, userID, interest)
+VALUES (22225.21, 13, 0.03);
+
+INSERT INTO savingsaccounts (balance, userID, interest)
+VALUES (223.21, 14, 0.03);
+
+
+INSERT INTO bills (billAmount, biller, billeeID, paid)
+VALUES (100.45, "Piracy Ransom", 14, 0);
+
+
+INSERT INTO loans (principle, userID)
+VALUES (3000.00, 14);
+
+
+INSERT INTO REQUESTS (question, userID) 
+VALUES ('How can I transfer money internationally to Patna, Biharre, India?', 1)
+
+
+https://stackoverflow.com/questions/70784667/reversing-list-with-recursion-in-elixir
+https://stackoverflow.com/questions/30627233/sort-list-elements-in-elixir-lang
+
+https://elixirtips.com/posts/descending-sort-elixir-lists-without-reverse
+
+file:///C:/Users/tahai/Documents/Work/Study/University/CPS506%20ComparativeProgLang/cps506_w23_practice/elixir_cheatsheet.html
+https://bicyclecards.com/how-to-play/war
+https://hexdocs.pm/elixir/1.12/Enum.html
+https://stackoverflow.com/questions/27097810/delete-a-row-in-csv-file#:~:text=You%20need%20to%20read%20the,an%20int%20with%20row%20number.&text=Save%20this%20answer.,-Show%20activity%20on
+
+
+
+
+2 things to figure out: 
+1. How to host database online TRY ASW (kelsi will do it)
+2. Figure out how to integreate html with java
+
+DFSvisit(j)
+if self.visitedV[j]
+	return True
+else: 
+	return False
